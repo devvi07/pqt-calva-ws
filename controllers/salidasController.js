@@ -6,7 +6,7 @@ exports.getSalidas = async (req, res) => {
 };
 
 exports.crearSalidas = async (req, res) => {
-  const nuevo = new Cliente(req.body);
+  const nuevo = new Salidas(req.body);
   await nuevo.save();
   res.status(201).json(nuevo);
 };
