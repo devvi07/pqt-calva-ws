@@ -21,6 +21,24 @@ exports.actualizarCliente = async (req, res) => {
   }
 };
 
+exports.actualizarTodosLosClientes = async (req, res) => {
+  try {
+    const resultado = await Cliente.updateMany({}, req.body);
+
+    if (resultado.modifiedCount === 0) {
+      return res.status(404).json({ mensaje: "No se modificó ningún cliente" });
+    }
+
+    res.json({
+      mensaje: "Clientes actualizados correctamente",
+      modificados: resultado.modifiedCount
+    });
+  } catch (error) {
+    console.error("Error al actualizar clientes:", error);
+    res.status(400).json({ error: "Error al actualizar los clientes" });
+  }
+};
+
 exports.eliminarCliente = async (req, res) => {
   try {
     const eliminado = await Cliente.findByIdAndDelete(req.params.id);
