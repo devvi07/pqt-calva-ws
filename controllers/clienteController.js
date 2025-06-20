@@ -20,3 +20,13 @@ exports.actualizarCliente = async (req, res) => {
     res.status(400).json({ error: "ID inválido" });
   }
 };
+
+exports.eliminarCliente = async (req, res) => {
+  try {
+    const eliminado = await Cliente.findByIdAndDelete(req.params.id);
+    if (!eliminado) return res.status(404).json({ mensaje: "No encontrado" });
+    res.json({ mensaje: "Usuario eliminado" });
+  } catch {
+    res.status(400).json({ error: "ID inválido" });
+  }
+};
