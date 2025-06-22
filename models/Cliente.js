@@ -10,11 +10,7 @@ const clienteSchema = new Schema({
   nombreRecibe: String,
   direccionRecibe: String,
   telRecibe: String,
-  descPaquete: String,
-  clasificacion: String,
-  destino: String,
-  fotos: String,
-  status: String,
+  paquetes: [{ type: Schema.Types.ObjectId, ref: 'Paquetes' }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Cliente', clienteSchema);

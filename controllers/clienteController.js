@@ -33,6 +33,7 @@ exports.actualizarTodosLosClientes = async (req, res) => {
       mensaje: "Clientes actualizados correctamente",
       modificados: resultado.modifiedCount
     });
+    
   } catch (error) {
     console.error("Error al actualizar clientes:", error);
     res.status(400).json({ error: "Error al actualizar los clientes" });
