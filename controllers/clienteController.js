@@ -1,7 +1,7 @@
 const Cliente = require("../models/Cliente");
 
 exports.getClientes = async (req, res) => {
-  const cliente = await Cliente.find();
+  const cliente = await Cliente.find().populate('paquetes');
   res.json(cliente);
 };
 
