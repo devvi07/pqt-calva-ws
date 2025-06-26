@@ -7,6 +7,7 @@ const paquetesSchema = new Schema({
   destino: String,
   fotos: String,
   status: String,
+  idCliente: String
 }, { timestamps: true });
 
 module.exports = mongoose.model('Paquetes', paquetesSchema);
