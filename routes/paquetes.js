@@ -5,7 +5,7 @@ const paqueteController = require("../controllers/paquetesController");
 router.get("/", paqueteController.getPaquetes);
 router.post("/", paqueteController.crearPaquete);
 router.put("/:id", paqueteController.actualizarPaquete);
-router.put("/:id", paqueteController.actualizarMultiplesPaquetes);
+router.put("/", paqueteController.actualizarMultiplesPaquetes);
 router.delete("/:id", paqueteController.eliminarPaquete);
 
 module.exports = router;
