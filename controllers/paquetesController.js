@@ -21,6 +21,30 @@ exports.actualizarPaquete = async (req, res) => {
   }
 };
 
+exports.actualizarMultiplesPaquetes = async (req, res) => {
+  const { ids, data } = req.body; // ids = [id1, id2, id3], data = { campo1: valor, campo2: valor }
+
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ error: "Debes enviar un arreglo de IDs" });
+  }
+
+  try {
+    const resultado = await Paquete.updateMany(
+      { _id: { $in: ids } },
+      { $set: data }
+    );
+
+    res.json({
+      mensaje: "Paquetes actualizados",
+      modificados: resultado.modifiedCount
+    });
+  } catch (error) {
+    console.error("Error al actualizar:", error);
+    res.status(500).json({ error: "Error al actualizar los paquetes" });
+  }
+};
+
+
 exports.eliminarPaquete = async (req, res) => {
   try {
     const eliminado = await Paquete.findByIdAndDelete(req.params.id);
