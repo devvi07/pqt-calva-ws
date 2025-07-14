@@ -9,7 +9,7 @@ exports.getPaquetesPorCliente = async (req, res) => {
   const { idCliente } = req.params;
 
   try {
-    const paquetes = await Paquete.find({ cliente: idCliente });
+    const paquetes = await Paquete.find({ idCliente: idCliente });
     res.json(paquetes);
   } catch (error) {
     console.error("Error al obtener paquetes por cliente:", error);
