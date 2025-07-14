@@ -5,6 +5,18 @@ exports.getPaquetes = async (req, res) => {
   res.json(paquete);
 };
 
+exports.getPaquetesPorCliente = async (req, res) => {
+  const { idCliente } = req.params;
+
+  try {
+    const paquetes = await Paquete.find({ cliente: idCliente });
+    res.json(paquetes);
+  } catch (error) {
+    console.error("Error al obtener paquetes por cliente:", error);
+    res.status(500).json({ error: "Error al obtener los paquetes" });
+  }
+};
+
 exports.crearPaquete = async (req, res) => {
   const nuevo = new Paquete(req.body);
   await nuevo.save();
